@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daqiqa birja — treyding simulyator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Daqiqa birja</h1>
+      <p class="sub">Narxlar har daqiqada yangilanadi. Summani kiriting, yo'nalishni tanlang va foyda yoki zararni ko'ring.</p>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><div class="l">Bo'sh balans</div><div class="v" id="bal">$0</div></div>
+      <div class="stat"><div class="l">Jami kapital</div><div class="v" id="eq">$0</div></div>
+      <div class="stat"><div class="l">Boshlang'ichga nisbatan</div><div class="v" id="tot">$0</div></div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="card" aria-label="Narx grafigi">
+      <div class="assets" id="assets" role="group" aria-label="Aktivni tanlang"></div>
+      <div class="price-row">
+        <div class="big" id="price">—</div>
+        <div class="chg" id="chg"></div>
+      </div>
+      <div class="timer">
+        <span>Keyingi narx: <b id="count">60</b> soniyadan keyin</span>
+        <div class="bar"><i id="bar"></i></div>
+      </div>
+      <svg id="chart" class="chart" viewBox="0 0 600 220" role="img" aria-label="Narx grafigi"></svg>
+      <div class="axis"><span id="axl">60 daqiqa oldin</span><span>hozir</span></div>
+    </section>
+
+    <section class="card trade" aria-label="Savdo">
+      <h2>Savdo qilish</h2>
+      <label class="f" for="amt">Summa (virtual dollar)</label>
+      <div class="input"><span>$</span><input id="amt" type="number" inputmode="decimal" min="1" step="any" placeholder="100"></div>
+      <div class="quick" id="quick"></div>
+      <div class="hint" id="hint">Summani kiriting — narx 1% o'zgarsa qancha foyda yoki zarar bo'lishini ko'rasiz.</div>
+      <div class="btns">
+        <button class="go up" id="buy" type="button">Narx oshadi<small>Sotib olish</small></button>
+        <button class="go down" id="sell" type="button">Narx tushadi<small>Sotish</small></button>
+      </div>
+      <div class="err" id="err" role="alert"></div>
+    </section>
+  </div>
+
+  <section class="card pos" aria-label="Ochiq pozitsiyalar">
+    <h2>Ochiq pozitsiyalar</h2>
+    <div class="tablewrap" id="posbox"></div>
+  </section>
+
+  <footer>
+    <span>Bu o'quv simulyatori: narxlar tasodifiy yaratiladi va pul virtual.</span>
+    <span style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" id="speed" aria-pressed="false">Tezkor rejim: o'chiq</button>
+      <button type="button" id="reset">Boshidan boshlash</button>
+    </span>
+  </footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
